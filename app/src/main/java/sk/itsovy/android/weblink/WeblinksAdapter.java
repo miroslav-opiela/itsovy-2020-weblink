@@ -3,6 +3,8 @@ package sk.itsovy.android.weblink;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,18 +16,22 @@ import java.util.List;
 public class WeblinksAdapter
         extends RecyclerView.Adapter<WeblinksAdapter.WeblinksViewHolder> {
 
-    private List<String> weblinks;
+    private List<Weblink> weblinks;
 
     public WeblinksAdapter() {
+        List<String> stringList = new ArrayList<>();
+        stringList.add("Vermilion flycatcher");
+        stringList.add("HMS Royalist");
+        stringList.add("Leonor Tomásia de Távora, 3rd Marquise of Távora");
+        stringList.add("Tomomi Seo");
+        stringList.add("Signomial");
+        stringList.add("2015 Kyrgyz parliamentary election");
+        stringList.add("Iberian ribbed newt");
         weblinks = new ArrayList<>();
-        weblinks.add("Vermilion flycatcher");
-        weblinks.add("HMS Royalist");
-        weblinks.add("Leonor Tomásia de Távora, 3rd Marquise of Távora");
-        weblinks.add("Tomomi Seo");
-        weblinks.add("Signomial");
-        weblinks.add("2015 Kyrgyz parliamentary election");
-        weblinks.add("Iberian ribbed newt");
-
+        for (String s : stringList) {
+            weblinks.add(new Weblink(s));
+        }
+        weblinks.get(0).setRating(1);
     }
 
     @NonNull
@@ -49,14 +55,17 @@ public class WeblinksAdapter
     public class WeblinksViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textView;
+        private RatingBar ratingBar;
 
         public WeblinksViewHolder(@NonNull View layout) {
             super(layout);
             textView = layout.findViewById(R.id.textViewWeblinkTitle);
+            ratingBar = layout.findViewById(R.id.ratingBar);
         }
 
-        public void bind(String weblink) {
-            textView.setText(weblink);
+        public void bind(Weblink weblink) {
+            textView.setText(weblink.getTitle());
+            ratingBar.setRating(weblink.getRating());
         }
     }
 }
