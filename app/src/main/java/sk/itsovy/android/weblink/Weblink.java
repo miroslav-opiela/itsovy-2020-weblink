@@ -1,6 +1,8 @@
 package sk.itsovy.android.weblink;
 
-public class Weblink {
+import java.io.Serializable;
+
+public class Weblink implements Serializable {
 
     private String title;
     private int rating;

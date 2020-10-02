@@ -4,4 +4,6 @@ public interface OnWeblinkClickListener {
 
     void onWeblinkClick(Weblink weblink);
 
+    void onWeblinkLongClick(Weblink weblink);
+
 }

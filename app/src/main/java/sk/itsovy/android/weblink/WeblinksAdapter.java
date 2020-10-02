@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -67,12 +68,24 @@ public class WeblinksAdapter
 
         public void bind(final Weblink weblink, final OnWeblinkClickListener listener) {
             textView.setText(weblink.getTitle());
-            ratingBar.setRating(weblink.getRating());
-
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     listener.onWeblinkClick(weblink);
+                }
+            });
+            textView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    listener.onWeblinkLongClick(weblink);
+                    return true;
+                }
+            });
+            ratingBar.setRating(weblink.getRating());
+            ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+                @Override
+                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                    weblink.setRating((int) rating);
                 }
             });
         }
