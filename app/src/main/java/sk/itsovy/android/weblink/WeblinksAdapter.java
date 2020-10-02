@@ -17,8 +17,10 @@ public class WeblinksAdapter
         extends RecyclerView.Adapter<WeblinksAdapter.WeblinksViewHolder> {
 
     private List<Weblink> weblinks;
+    private OnWeblinkClickListener listener;
 
-    public WeblinksAdapter() {
+    public WeblinksAdapter(OnWeblinkClickListener listener) {
+        this.listener = listener;
         List<String> stringList = new ArrayList<>();
         stringList.add("Vermilion flycatcher");
         stringList.add("HMS Royalist");
@@ -44,7 +46,7 @@ public class WeblinksAdapter
 
     @Override
     public void onBindViewHolder(@NonNull WeblinksViewHolder holder, int position) {
-        holder.bind(weblinks.get(position));
+        holder.bind(weblinks.get(position), listener);
     }
 
     @Override
@@ -63,9 +65,16 @@ public class WeblinksAdapter
             ratingBar = layout.findViewById(R.id.ratingBar);
         }
 
-        public void bind(Weblink weblink) {
+        public void bind(final Weblink weblink, final OnWeblinkClickListener listener) {
             textView.setText(weblink.getTitle());
             ratingBar.setRating(weblink.getRating());
+
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onWeblinkClick(weblink);
+                }
+            });
         }
     }
 }
