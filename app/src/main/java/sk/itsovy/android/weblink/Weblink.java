@@ -22,6 +22,11 @@ public class Weblink implements Serializable {
         this.rating = rating;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+        this.url = Utils.getWikipediaUrl(title);
+    }
+
     public String getTitle() {
         return title;
     }

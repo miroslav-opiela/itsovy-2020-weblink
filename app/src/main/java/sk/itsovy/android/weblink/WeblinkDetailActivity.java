@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -13,17 +14,29 @@ public class WeblinkDetailActivity extends AppCompatActivity {
 
     public static final String WEBLINK_TAG = "weblink";
 
+    private EditText editText;
+    private Weblink weblink;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weblink_detail);
 
-        EditText editText = findViewById(R.id.weblinkDetailEditText);
+        editText = findViewById(R.id.weblinkDetailEditText);
         TextView textView = findViewById(R.id.weblinkDetailTextView);
 
         Intent intent = getIntent();
-        Weblink weblink = (Weblink) intent.getSerializableExtra(WEBLINK_TAG);
+        weblink = (Weblink) intent.getSerializableExtra(WEBLINK_TAG);
         textView.setText(weblink.getUrl());
         editText.setText(weblink.getTitle());
+    }
+
+    public void save(View view) {
+        String text = editText.getText().toString();
+        weblink.setTitle(text);
+        Intent intent = new Intent();
+        intent.putExtra(WEBLINK_TAG, weblink);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }
