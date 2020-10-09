@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity implements OnWeblinkClickLis
 
     private static final int CODE = 8;
 
+    private WeblinksAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +26,8 @@ public class MainActivity extends AppCompatActivity implements OnWeblinkClickLis
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        WeblinksAdapter adapter = new WeblinksAdapter(this);
+
+        adapter = new WeblinksAdapter(this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements OnWeblinkClickLis
             if (resultCode == RESULT_OK) {
                 Weblink weblink = (Weblink) data.getSerializableExtra(WeblinkDetailActivity.WEBLINK_TAG);
                 Toast.makeText(this, "new weblink " + weblink.getTitle(), Toast.LENGTH_SHORT).show();
+                adapter.update(weblink);
             }
         }
     }

@@ -1,0 +1,8 @@
+ked dostanem updatnuty weblink:
+- povedat adapteru ze sa nieco zmenilo
+
+Aktivita -> Adapter
+- adapter aktualizuje svoje data
+
+- adapter ma povedat layoutu ze sa nieco zmenilo
+

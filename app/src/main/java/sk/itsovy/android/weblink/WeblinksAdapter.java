@@ -55,6 +55,15 @@ public class WeblinksAdapter
         return weblinks.size();
     }
 
+    public void update(Weblink weblink) {
+        for (int i = 0; i < this.weblinks.size(); i++) {
+            if (weblinks.get(i).getUuid().equals(weblink.getUuid())) {
+                weblinks.set(i, weblink);
+            }
+        }
+        notifyDataSetChanged();
+    }
+
     public class WeblinksViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textView;
