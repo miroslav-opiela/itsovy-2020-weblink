@@ -26,3 +26,12 @@ Edit:
 Add:
 - B: rovnako
 - A: adapter.update
+
+
+swipeDirs je cislo
+LEFT = 4
+0100
+RIGHT = 8
+1000
+1100
+RLDU

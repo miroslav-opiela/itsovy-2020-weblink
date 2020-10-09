@@ -74,6 +74,11 @@ public class WeblinksAdapter
 
     }
 
+    public void remove(int position) {
+        weblinks.remove(position);
+        notifyItemRemoved(position);
+    }
+
     public class WeblinksViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textView;
