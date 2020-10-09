@@ -1,8 +1,28 @@
 ked dostanem updatnuty weblink:
 - povedat adapteru ze sa nieco zmenilo
-
 Aktivita -> Adapter
 - adapter aktualizuje svoje data
-
 - adapter ma povedat layoutu ze sa nieco zmenilo
 
+A: Main Activity
+B: WeblinkDetailActivity
+
+A->B
+Edit:
+- A: vlozi sa weblink do extra
+- A: startActivityForResult
+- B: nastavili sa textview a edittext podla weblinku z extra
+
+Add:
+- A: startActivityForResult (s vlozenim empty weblinku do extra)
+- B: ziadna zmena
+
+B->A
+Edit:
+- B: vlozi sa weblink do extra
+- B: result OK
+- A: adapter.update
+
+Add:
+- B: rovnako
+- A: adapter.update

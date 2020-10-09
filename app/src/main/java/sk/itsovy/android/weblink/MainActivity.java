@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements OnWeblinkClickLis
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_add:
+                startDetailActivity(Weblink.createEmptyWeblink());
                 Toast.makeText(this, "ADD", Toast.LENGTH_SHORT).show();
                 return true;
             default:
@@ -66,12 +67,15 @@ public class MainActivity extends AppCompatActivity implements OnWeblinkClickLis
         startActivity(intent);
     }
 
-    @Override
-    public void onWeblinkLongClick(Weblink weblink) {
+    private void startDetailActivity(Weblink weblink) {
         Intent intent = new Intent(this, WeblinkDetailActivity.class);
         intent.putExtra(WeblinkDetailActivity.WEBLINK_TAG, weblink);
-        //startActivity(intent);
         startActivityForResult(intent, CODE);
+    }
+
+    @Override
+    public void onWeblinkLongClick(Weblink weblink) {
+        startDetailActivity(weblink);
     }
 
     @Override

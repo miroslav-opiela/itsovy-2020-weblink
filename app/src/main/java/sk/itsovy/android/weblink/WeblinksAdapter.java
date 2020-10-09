@@ -56,12 +56,22 @@ public class WeblinksAdapter
     }
 
     public void update(Weblink weblink) {
+        // EDIT
         for (int i = 0; i < this.weblinks.size(); i++) {
             if (weblinks.get(i).getUuid().equals(weblink.getUuid())) {
                 weblinks.set(i, weblink);
+                notifyItemChanged(i);
+                return;
             }
         }
-        notifyDataSetChanged();
+        // ADD
+        // na koniec
+        //weblinks.add(weblink);
+        //notifyItemInserted(weblinks.size() - 1);
+        // na zaciatok
+        weblinks.add(0, weblink);
+        notifyItemInserted(0);
+
     }
 
     public class WeblinksViewHolder extends RecyclerView.ViewHolder {

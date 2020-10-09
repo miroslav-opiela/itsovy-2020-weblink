@@ -59,4 +59,10 @@ public class Weblink implements Serializable {
     public String getUrl() {
         return url;
     }
+
+    public static Weblink createEmptyWeblink() {
+        Weblink weblink = new Weblink("", 0);
+        weblink.url = "NO URL";
+        return weblink;
+    }
 }
